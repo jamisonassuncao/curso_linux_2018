@@ -5,37 +5,35 @@
 ## digitando date +%d temos o dia do mês
 ## digitando date +%B temos o mes
 ## consulte man date ou date --help
-## P.S meu sistema padrão é em ingês então resolvi usando os dias em inglês
 
 
-read -p "Type a day name: " dia
+read -p "Digite o nome de um dia da semana: " dia
 
-## como o comando date da o nome do dia e do mês com a primeira letra maiuscula é preciso deixar tudo minúsuclo
-today=`echo "$(date +%A)" | tr '[:upper:]' '[:lower:]'`
+today=`date +%A`
 n_date=`date +%d`
-month=`echo "$(date +%B)" | tr '[:upper:]' '[:lower:]'`
+month=`date +%B`
 
 
-## converte o dia em numero para facilitar as operações
+## converte o dia em numero para facilitar as operacões
 function convertDate2number(){
     sun=1;mon=2;tue=3;wed=4;thu=5;fri=6;sat=7
     day=$1
 
     case "$day" in
 
-        "sunday")
+        "domingo")
             nday=1 ;;
-        "monday")
+        "segunda")
             nday=2 ;;
-        "tuesday")
+        "terca")
             nday=3 ;;
-        "wednesday")
+        "quarta")
             nday=4 ;;
-        "thursday")
+        "quinta")
             nday=5 ;;
-        "friday")
+        "sexta")
             nday=6 ;;
-        "saturday")
+        "sabado")
             nday=7 ;;
         *) 
             nday=-1;;
@@ -51,33 +49,33 @@ function checkMonth() {
 
     case "$month" in
 
-        january|march|may|july|august|octuber|december) 
+        janeiro|marco|maio|julho|agosto|outubro|dezembro) 
 
             if [ $sumday -le 31 ]; then
-                echo " on $month $sumday"
+                echo " $sumday $month"
             else
                 nmonth=`setMonth $month`
                 day=$[$sumday-31]
-                echo " on $nmonth $day"
+                echo " $day $month"
             fi
             ;;
 
-        april|june|september|november)
+        abril|junho|setembro|novembro)
 
             if [ $sumday -le 30 ]; then
-                echo " on $month $sumday"
+                echo " $sumday $month"
             else
                 nmonth=`setMonth $month`
                 day=$[$sumday-31]
-                echo " on $nmonth $day"
+                echo " $day $nmonth"
             fi
             ;;
 
-        february)
+        fevereiro)
 
             nmonth=`setMonth $month`
             day=$[$sumday-31]
-            echo " on $nmonth $day"
+            echo "  $day $nmonth"
             ;;
 
     esac
@@ -91,18 +89,18 @@ function setMonth() {
 
     case "$month" in
 
-        "january") next=february ;;
-        "february") next=march ;;
-        "march") next=april ;;
-        "april") next=may ;;
-        "may") next=june ;;
-        "june") next=july ;;
-        "july") next=august ;;
-        "august") next=september ;;
-        "septermber") next=octuber ;;
-        "octuber") next=november ;;
-        "november") next=december ;;
-        "december") next=january ;;
+        "janeiro") next=fevereiro ;;
+        "fevereiro") next=marco ;;
+        "marco") next=abril ;;
+        "abril") next=maio ;;
+        "maio") next=junho ;;
+        "junho") next=julho ;;
+        "julho") next=agosto ;;
+        "agosto") next=setembro ;;
+        "septermber") next=outubro ;;
+        "outubro") next=novembro ;;
+        "novembro") next=dezembro ;;
+        "dezembro") next=janeiro ;;
 
     esac
 
@@ -116,7 +114,7 @@ n_choosed=`convertDate2number $dia`
 
 ##verifica se o dia dado existe
 if [ $n_choosed -lt 0 ]; then
-    echo "Type a valid name day!"
+    echo "Escolha um dia válido!"
     exit
 fi
 
@@ -127,13 +125,13 @@ else
     res=$[$n_choosed-$n_today]
 fi
 
-echo -n "The next $dia will be in $res day(s)"
+echo -n "A próxima $dia será em $res dia(s),"
 
 
 ## calcula o mês e o dia da data pedida
 if [ $[$n_date+$res] -gt 28 ]; then
     checkMonth $month $[$n_date+$res]
 else
-    echo " on $month $[$n_date+$res]"
+    echo " $[$n_date+$res] $month"
 fi
 
