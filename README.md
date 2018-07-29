@@ -20,7 +20,7 @@ promovendo a utilização do software livre.
 **Ministrantes:**
 >[Israel Augusto Dragone][3]
 
->Leonardo Fabricius Silva
+>[Leonardo Fabricius Silva][4]
 
 >[Jamison Faustino Gomes de Assunção][5]
 
@@ -47,5 +47,6 @@ condicionais e estruturas de dados e funções.
 [1]: http://www.iag.usp.br/geofisica/linux
 [2]: https://github.com/marcelobianchi
 [3]: https://github.com/IsraelDragone
+[4]: https://github.com/leofabricius
 [5]: https://github.com/jamisonassuncao
 [6]: https://github.com/rafaelmds
